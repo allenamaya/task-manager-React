@@ -17,7 +17,16 @@ function App() {
     user_id?navigate("/"):navigate("/login")
   }, [])
   return (
-
+      <div>
+        <Header />
+        <Routes>
+          <Route exact path = '/' element = {<LandingPage user = {user} />}/>
+          <Route exact path = '/tasks' element = {<TaskItem />}/>
+          <Route exact path = '/login' element = {<Login setUser = {setUser}/>} />
+          <Route exact path = '/addtask' element = {<AddTask />}/>
+        </Routes>
+        <Footer/>
+      </div>
   );
 }
 
