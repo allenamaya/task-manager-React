@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-function Home({ user }) {
+function LandingPage({ user }) {
     const [tasks, setTasks] = useState([]);
     const [allTasks, setAllTasks] = useState([]);
 
@@ -42,4 +42,4 @@ function Home({ user }) {
     );
 }
 
-export default Home;
+export default LandingPage;
