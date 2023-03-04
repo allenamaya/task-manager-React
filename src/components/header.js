@@ -2,28 +2,21 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Header(){
+    const linkStyle = {
+        color: '#000',
+        textDecoration: 'none',
+        margin: '0 10px',
+        fontWeight: 'bold'
+    }
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container">
-                <NavLink className="navbar-brand" to="/">My App</NavLink>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/" exact>Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/tasks">Tasks</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/newtasks">New Tasks</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/taskdetails">Task Details</NavLink>
-                        </li>
-                    </ul>
+        <nav style={{backgroundColor: '#fff', padding: '10px 0'}}>
+            <div style={{width: '100%', maxWidth: '1200px', margin: '0 auto'}}>
+                <NavLink style={{marginRight: 'auto', fontWeight: 'bold', fontSize: '24px', color: '#000', textDecoration: 'none'}} className="navbar-brand" to="/">My App</NavLink>
+                <div style={{display: 'flex'}}>
+                    <NavLink style={linkStyle} activeClassName="active" to="/" exact>Home</NavLink>
+                    <NavLink style={linkStyle} activeClassName="active" to="/tasks">All tasks</NavLink>
+                    <NavLink style={linkStyle} activeClassName="active" to="/addtasks">New Tasks</NavLink>
                 </div>
             </div>
         </nav>

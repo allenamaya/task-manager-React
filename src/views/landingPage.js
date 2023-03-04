@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import taskItem from "../components/taskItem";
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 function LandingPage({ user }) {
     const [tasks, setTasks] = useState([]);
@@ -18,14 +16,10 @@ function LandingPage({ user }) {
                 setTasks(tasks);
                 setAllTasks(
                     tasks.map((task) => (
-                        <Col sm={6} md={4} lg={3} key={task.id}>
-                            <Card className="mb-3">
-                                <Card.Body>
-                                    <Card.Title>{task.name}</Card.Title>
-                                    <Card.Text>{task.description}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        <div key={task.id} style={{ margin: '1rem 0' }}>
+                            <h3>{task.name}</h3>
+                            <p>{task.description}</p>
+                        </div>
                     ))
                 );
             });
@@ -33,13 +27,14 @@ function LandingPage({ user }) {
 
     return (
         <div>
-            <Header />
-            <Container className="my-3">
-                <Row>{allTasks}</Row>
-            </Container>
+            <Header/>
+            <main style={{ margin: '2rem auto', maxWidth: '80ch' }}>
+                {allTasks.length > 0 ? allTasks : <p>Loading tasks...</p>}
+            </main>
             <Footer/>
         </div>
     );
 }
 
 export default LandingPage;
+

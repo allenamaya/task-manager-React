@@ -1,44 +1,50 @@
-import React, {  useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login({ setUser }) {
-    const [user_info, setUserInfo] = useState()
-    const navigate = useNavigate()
+    const [user_info, setUserInfo] = useState();
+    const navigate = useNavigate();
 
     function login(e) {
-        e.preventDefault()
-        fetch("http://localhost:9292/login", {
+        e.preventDefault();
+        fetch('http://localhost:9292/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user_info)
+            body: JSON.stringify(user_info),
         })
-            .then(response => response.json())
-            .then(data => {
-                setUser(data)
-                localStorage.setItem('user_id', `${data.id}`)
-                navigate('/')
-            })
+            .then((response) => response.json())
+            .then((data) => {
+                setUser(data);
+                localStorage.setItem('user_id', `${data.id}`);
+                navigate('/');
+            });
     }
 
     function onchange(e) {
-        setUserInfo({ ...user_info, [e.target.name]: e.target.value })
+        setUserInfo({ ...user_info, [e.target.name]: e.target.value });
     }
 
     return (
-        <div className="container mt-5">
-            <form onSubmit={login}>
-                <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" className="form-control" id="email" placeholder="Enter your email" name="email" onBlur={onchange} />
+        <div style={{ marginTop: '5rem' }}>
+            <form onSubmit={login} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ marginBottom: '1rem' }}>
+                    <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>
+                        Email address
+                    </label>
+                    <input type="email" id="email" placeholder="Enter your email" name="email" onBlur={onchange} style={{ padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid gray', width: '100%', maxWidth: '20rem' }} />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Enter your password" name="password" onBlur={onchange} />
+                <div style={{ marginBottom: '1rem' }}>
+                    <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem' }}>
+                        Password
+                    </label>
+                    <input type="password" id="password" placeholder="Enter your password" name="password" onBlur={onchange} style={{ padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid gray', width: '100%', maxWidth: '20rem' }} />
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" style={{ backgroundColor: 'blue', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.25rem', border: 'none' }}>
+                    Login
+                </button>
             </form>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

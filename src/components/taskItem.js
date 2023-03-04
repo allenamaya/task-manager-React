@@ -12,11 +12,9 @@ function TaskItem(){
                 setTasks(tasks)
                 setAllTasks(
                     tasks.map((task, index) => (
-                        <div key={index} className="card mb-3">
-                            <div className="card-body">
-                                <h2 className="card-title">{task.title}</h2>
-                                <p className="card-text">{task.body}</p>
-                            </div>
+                        <div key={index} style={{marginBottom: "1rem", padding: "1rem", border: "1px solid #ccc"}}>
+                            <h2 style={{fontSize: "1.5rem"}}>{task.title}</h2>
+                            <p style={{fontSize: "1rem"}}>{task.body}</p>
                         </div>
                     ))
                 )
@@ -24,10 +22,10 @@ function TaskItem(){
     }, [])
 
     return (
-        <div className="container">
-            <h1 className="text-center mt-5 mb-4">Tasks</h1>
-            <div className="row justify-content-center">
-                <div className="col-md-8">
+        <div style={{textAlign: "center", marginTop: "3rem"}}>
+            <h1 style={{fontSize: "2rem", marginBottom: "1rem"}}>Tasks</h1>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <div style={{maxWidth: "768px"}}>
                     {allTasks}
                 </div>
             </div>
