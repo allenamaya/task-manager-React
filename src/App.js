@@ -8,9 +8,16 @@ import Login from "./views/login";
 import LandingPage from "./views/landingPage";
 
 function App() {
+  const [user, setUser] = useState({})
+
+  const navigate = useNavigate()
+  useEffect(() => {
+
+    const user_id = localStorage.getItem('user_id')
+    user_id?navigate("/"):navigate("/login")
+  }, [])
   return (
-   <div>
-    </div>
+
   );
 }
 
