@@ -1,39 +1,75 @@
-import React from 'react';
+import React, { useState } from "react";
 
-function AddTask() {
+const AddTask = () => {
+    const [task_name, setTaskName] = useState("");
+    const [description, setDescription] = useState("");
+    const [due_date, setDueDate] = useState("");
+    const [status, setStatus] = useState("");
+
+    const handleTaskNameChange = (event) => {
+        setTaskName(event.target.value);
+    };
+
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value);
+    };
+
+    const handleDueDateChange = (event) => {
+        setDueDate(event.target.value);
+    };
+
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const task = { task_name, description, due_date, status };
+        const response = await fetch("http://your-api-endpoint.com/tasks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(task)
+        });
+        if (response.ok) {
+            // handle successful submission
+            console.log("Task submitted successfully");
+        } else {
+            // handle failed submission
+            console.log("Failed to submit task");
+        }
+    };
+
     return (
-        <div style={{margin: '50px auto', maxWidth: '500px'}}>
-            <form>
-                <div style={{marginBottom: '20px'}}>
-                    <label htmlFor="name" style={{display: 'block', marginBottom: '5px'}}>Name</label>
-                    <input type="text" style={{padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%'}} id="name" placeholder="Name" />
-                </div>
-                <div style={{marginBottom: '20px'}}>
-                    <label htmlFor="description" style={{display: 'block', marginBottom: '5px'}}>Description</label>
-                    <textarea style={{padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%'}} id="description" rows="3" placeholder="Description"></textarea>
-                </div>
-                <div style={{marginBottom: '20px'}}>
-                    <label htmlFor="status" style={{display: 'block', marginBottom: '5px'}}>Status</label>
-                    <select style={{padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%'}} id="status">
-                        <option value="">Select a status</option>
-                        <option value="todo">To Do</option>
-                        <option value="inprogress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-                <div style={{marginBottom: '20px'}}>
-                    <label htmlFor="date" style={{display: 'block', marginBottom: '5px'}}>Date</label>
-                    <input type="date" style={{padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%'}} id="date" placeholder="Date" />
-                </div>
-                <div style={{marginBottom: '20px'}}>
-                    <label htmlFor="dueDate" style={{display: 'block', marginBottom: '5px'}}>Due Date</label>
-                    <input type="date" style={{padding: '10px', borderRadius: '5px', border: '1px solid #ccc', width: '100%'}} id="dueDate" placeholder="Due Date" />
-                </div>
-                <button type="submit" style={{padding: '10px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', border: 'none', width: '100%'}}>Submit</button>
-            </form>
-        </div>
-    )
-}
+        <form onSubmit={handleSubmit}>
+            <label>
+                Task Name:
+                <input type="text" value={task_name} onChange={handleTaskNameChange} />
+            </label>
+            <br />
+            <label>
+                Description:
+                <input type="text" value={description} onChange={handleDescriptionChange} />
+            </label>
+            <br />
+            <label>
+                Due Date:
+                <input type="date" value={due_date} onChange={handleDueDateChange} />
+            </label>
+            <br />
+            <label>
+                Status:
+                <select value={status} onChange={handleStatusChange}>
+                    <option value="">Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
 
 export default AddTask;
-

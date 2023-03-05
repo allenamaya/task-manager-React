@@ -1,36 +1,84 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from "react";
 
-function TaskItem(){
-    const [tasks, setTasks] = useState([]);
-    const [allTasks, setAllTasks] = useState([]);
+const TaskItem = ({ taskId }) => {
+    const [task, setTask] = useState(null);
+    const [description, setDescription] = useState("");
+    const [due_date, setDueDate] = useState("");
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then(response => response.json())
-            .then((tasks) => {
-                console.log(tasks)
-                setTasks(tasks)
-                setAllTasks(
-                    tasks.map((task, index) => (
-                        <div key={index} style={{marginBottom: "1rem", padding: "1rem", border: "1px solid #ccc"}}>
-                            <h2 style={{fontSize: "1.5rem"}}>{task.title}</h2>
-                            <p style={{fontSize: "1rem"}}>{task.body}</p>
-                        </div>
-                    ))
-                )
-            })
-    }, [])
+        const fetchTask = async () => {
+            const response = await fetch(`http://your-api-endpoint.com/tasks/${taskId}`);
+            const data = await response.json();
+            setTask(data);
+            setDescription(data.description);
+            setDueDate(data.due_date);
+        };
+        fetchTask();
+    }, [taskId]);
+
+    const handleDelete = async () => {
+        const response = await fetch(`http://your-api-endpoint.com/tasks/${taskId}`, {
+            method: "DELETE"
+        });
+        if (response.ok) {
+            // handle successful deletion
+            console.log("Task deleted successfully");
+        } else {
+            // handle failed deletion
+            console.log("Failed to delete task");
+        }
+    };
+
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value);
+    };
+
+    const handleDueDateChange = (event) => {
+        setDueDate(event.target.value);
+    };
+
+    const handlePatch = async () => {
+        const patchedTask = { description, due_date };
+        const response = await fetch(`http://your-api-endpoint.com/tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(patchedTask)
+        });
+        if (response.ok) {
+            // handle successful patch
+            console.log("Task patched successfully");
+        } else {
+            // handle failed patch
+            console.log("Failed to patch task");
+        }
+    };
+
+    if (!task) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        <div style={{textAlign: "center", marginTop: "3rem"}}>
-            <h1 style={{fontSize: "2rem", marginBottom: "1rem"}}>Tasks</h1>
-            <div style={{display: "flex", justifyContent: "center"}}>
-                <div style={{maxWidth: "768px"}}>
-                    {allTasks}
-                </div>
-            </div>
+        <div>
+            <h2>{task.task_name}</h2>
+            <p>{task.description}</p>
+            <p>Due Date: {task.due_date}</p>
+            <button onClick={handleDelete}>Delete</button>
+            <br />
+            <label>
+                Description:
+                <input type="text" value={description} onChange={handleDescriptionChange} />
+            </label>
+            <br />
+            <label>
+                Due Date:
+                <input type="date" value={due_date} onChange={handleDueDateChange} />
+            </label>
+            <br />
+            <button onClick={handlePatch}>Save Changes</button>
         </div>
-    )
-}
+    );
+};
 
-export default TaskItem
+export default TaskItem;

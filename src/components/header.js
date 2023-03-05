@@ -1,26 +1,29 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
 
-function Header(){
-    const linkStyle = {
-        color: '#000',
-        textDecoration: 'none',
-        margin: '0 10px',
-        fontWeight: 'bold'
-    }
+const Header = ({ isLoggedIn, onLogout }) => {
+    const handleLogout = async () => {
+        const response = await fetch("http://your-api-endpoint.com/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (response.ok) {
+            // handle successful logout
+            onLogout();
+            console.log("Logout successful");
+        } else {
+            // handle failed logout
+            console.log("Logout failed");
+        }
+    };
 
     return (
-        <nav style={{backgroundColor: '#fff', padding: '10px 0'}}>
-            <div style={{width: '100%', maxWidth: '1200px', margin: '0 auto'}}>
-                <NavLink style={{marginRight: 'auto', fontWeight: 'bold', fontSize: '24px', color: '#000', textDecoration: 'none'}} className="navbar-brand" to="/">My App</NavLink>
-                <div style={{display: 'flex'}}>
-                    <NavLink style={linkStyle} activeClassName="active" to="/" exact>Home</NavLink>
-                    <NavLink style={linkStyle} activeClassName="active" to="/tasks">All tasks</NavLink>
-                    <NavLink style={linkStyle} activeClassName="active" to="/addtasks">New Tasks</NavLink>
-                </div>
-            </div>
-        </nav>
+        <div>
+            <h1>Header</h1>
+            {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+        </div>
     );
-}
+};
 
-export default Header
+export default Header;
