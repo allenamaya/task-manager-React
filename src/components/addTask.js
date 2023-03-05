@@ -45,6 +45,7 @@ const AddTask = () => {
     return (
         <>
             <Header/>
+            <h1>Add a new task</h1>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
             <div style={{ backgroundColor: "#f1f1f1", borderRadius: "10px", width: "40%", padding: "20px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
                 <form onSubmit={handleSubmit} style={{
@@ -73,11 +74,7 @@ const AddTask = () => {
                     <label style={{ marginBottom: "20px" }}>
                         Status:
                         <br />
-                        <select value={status} onChange={handleStatusChange} style={{ width: "100%", padding: "10px", marginTop: "10px" }}>
-                            <option value="">Select Status</option>
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                        </select>
+                        <input type="text" value={status} onChange={handleStatusChange} style={{ width: "100%", padding: "10px", marginTop: "10px" }} placeholder="Enter Status" />
                     </label>
 
                     <button type="submit" style={{ backgroundColor: "#008CBA", color: "white", padding: "10px", borderRadius: "5px", border: "none", marginTop: "20px" }}>Submit</button>
