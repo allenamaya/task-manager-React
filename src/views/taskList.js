@@ -48,25 +48,30 @@ const TaskList = () => {
     return (
         <>
             <Header/>
-        <div style={{
-            backgroundColor: "#f1f1f1",
-            borderRadius: "10px",
-            padding: "20px",
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start"
-        }}>
             <h1>Task List</h1>
-            <ul style={{ margin: 0, padding: 0 }}>
+            <div style={{
+                backgroundColor: "#f1f1f1",
+                borderRadius: "10px",
+                padding: "20px",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between"
+            }}>
                 {tasks.map((task) => (
-                    <li key={task.id} style={{ display: "flex", flexDirection: "column", width: "100%", marginBottom: "10px" }}>
-                        <div style={{ flexGrow: 1 }}>
-                            <h2>{task.task_name}</h2>
-                            <p>{task.description}</p>
-                            <p>{task.due_date}</p>
-                            <p>{task.status}</p>
-                        </div>
+                    <div key={task.id} style={{
+                        backgroundColor: "#fff",
+                        borderRadius: "10px",
+                        padding: "15px",
+                        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                        width: "calc(30% - 15px)",
+                        marginBottom: "20px"
+                    }}>
+                        <h2>{task.task_name}</h2>
+                        <p>{task.description}</p>
+                        <p>{task.due_date}</p>
+                        <p>{task.status}</p>
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <button onClick={() => handleDelete(task.id)}>Delete</button>
                             <button onClick={() => {
@@ -75,10 +80,10 @@ const TaskList = () => {
                                 handleEdit(task.id, { description: newDescription, due_date: newDueDate });
                             }}>Edit</button>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
-        </div>
+            </div>
+
         </>
     );
 };

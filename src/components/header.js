@@ -24,7 +24,8 @@ const Header = ({ isLoggedIn, onLogout }) => {
             alignItems: 'center',
             justifyContent: 'space-between',
             backgroundColor: 'black',
-            padding: '10px'
+            padding: '10px',
+            width: '100%'
         }}>
             <h1 style={{ margin: 0, color: "white" }}>Task Manager</h1>
             {isLoggedIn && (
@@ -34,7 +35,7 @@ const Header = ({ isLoggedIn, onLogout }) => {
                     border: 'none',
                     borderRadius: '5px',
                     padding: '10px 20px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
                 }} onClick={handleLogout}>Logout</button>
             )}
         </div>
