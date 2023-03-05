@@ -1,50 +1,54 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 
-function Login({ setUser }) {
-    const [user_info, setUserInfo] = useState();
-    const navigate = useNavigate();
+const Login = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    function login(e) {
-        e.preventDefault();
-        fetch('http://127.0.0.1:9292/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user_info),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setUser(data);
-                localStorage.setItem('user_id', `${data.id}`);
-                navigate('/');
-            });
-    }
-
-    function onchange(e) {
-        setUserInfo({ ...user_info, [e.target.name]: e.target.value });
-    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const response = await fetch("http://your-api-endpoint.com/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+        if (response.ok) {
+            // handle successful login
+            console.log("Login successful");
+        } else {
+            // handle failed login
+            console.log("Login failed");
+            setError("Invalid username or password");
+        }
+    };
 
     return (
-        <div style={{ marginTop: '5rem' }}>
-            <form onSubmit={login} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>
-                        Email address
-                    </label>
-                    <input type="email" id="email" placeholder="Enter your email" name="email" onBlur={onchange} style={{ padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid gray', width: '100%', maxWidth: '20rem' }} />
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(event) => setUsername(event.target.value)}
+                    />
                 </div>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem' }}>
-                        Password
-                    </label>
-                    <input type="password" id="password" placeholder="Enter your password" name="password" onBlur={onchange} style={{ padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid gray', width: '100%', maxWidth: '20rem' }} />
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
                 </div>
-                <button type="submit" style={{ backgroundColor: 'blue', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.25rem', border: 'none' }}>
-                    Login
-                </button>
+                <button type="submit">Submit</button>
             </form>
+            {error && <div>{error}</div>}
         </div>
     );
-}
+};
 
 export default Login;
