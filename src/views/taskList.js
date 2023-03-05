@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "../components/header";
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -45,6 +46,8 @@ const TaskList = () => {
     };
 
     return (
+        <>
+            <Header/>
         <div style={{
             backgroundColor: "#f1f1f1",
             borderRadius: "10px",
@@ -76,7 +79,7 @@ const TaskList = () => {
                 ))}
             </ul>
         </div>
-
+        </>
     );
 };
 

@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../components/header";
 
 function LandingPage() {
     return (
+        <>
+            <Header/>
         <div>
             <h1>Welcome to Your Task Manager</h1>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -40,7 +43,7 @@ function LandingPage() {
                 </div>
             </div>
         </div>
-
+        </>
     );
 };
 

@@ -26,25 +26,33 @@ const Login = () => {
 
     return (
         <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
+            <h1>Welcome to your task manager</h1>
+            <h2>Lets get you Logged in</h2>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div style={{ marginBottom: "20px" }}>
+                    <label style={{ display: "block", marginBottom: "10px" }}>Username:</label>
                     <input
                         type="text"
                         value={username}
                         onChange={(event) => setUsername(event.target.value)}
+                        style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", width: "100%" }}
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div style={{ marginBottom: "20px" }}>
+                    <label style={{ display: "block", marginBottom: "10px" }}>Password:</label>
                     <input
                         type="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                        style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", width: "100%" }}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button
+                    type="submit"
+                    style={{ backgroundColor: "#4CAF50", color: "white", padding: "12px 20px", border: "none", borderRadius: "5px", cursor: "pointer" }}
+                >
+                    Submit
+                </button>
             </form>
             {error && <div>{error}</div>}
         </div>

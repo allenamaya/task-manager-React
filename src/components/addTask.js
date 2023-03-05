@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "./header";
 
 const AddTask = () => {
     const [task_name, setTaskName] = useState("");
@@ -42,6 +43,8 @@ const AddTask = () => {
     };
 
     return (
+        <>
+            <Header/>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
             <div style={{ backgroundColor: "#f1f1f1", borderRadius: "10px", width: "40%", padding: "20px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
                 <form onSubmit={handleSubmit} style={{
@@ -82,6 +85,7 @@ const AddTask = () => {
 
             </div>
         </div>
+        </>
     )
 };
 
