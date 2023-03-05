@@ -74,11 +74,12 @@ const TaskList = () => {
                         <p>{task.due_date}</p>
                         <p>{task.status}</p>
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <button onClick={() => handleDelete(task.id)}>Delete</button>
-                            <button onClick={() => {
+                            <button style={{ backgroundColor: "deepskyblue", color: "white", padding: "10px", borderRadius: "10px", marginRight: "10px" }} onClick={() => handleDelete(task.id)}>Delete</button>
+                            <button style={{ backgroundColor: "deepskyblue", color: "white", padding: "10px", borderRadius: "10px" }} onClick={() => {
                                 const newStatus = prompt("Enter a new status:");
                                 handleEdit(task.id, newStatus);
                             }}>Edit</button>
+
                         </div>
                     </div>
                 ))}
