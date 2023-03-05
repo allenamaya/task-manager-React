@@ -77,7 +77,7 @@ const AddTask = () => {
                         <input type="text" value={status} onChange={handleStatusChange} style={{ width: "100%", padding: "10px", marginTop: "10px" }} placeholder="Enter Status" />
                     </label>
 
-                    <button type="submit" style={{ backgroundColor: "#008CBA", color: "white", padding: "10px", borderRadius: "5px", border: "none", marginTop: "20px" }}>Submit</button>
+                    <button type="submit" style={{ backgroundColor: "deepskyblue", color: "white", padding: "10px", borderRadius: "10px", border: "none", marginTop: "20px" }}>Submit</button>
                 </form>
 
             </div>

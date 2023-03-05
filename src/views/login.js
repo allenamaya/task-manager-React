@@ -49,7 +49,7 @@ const Login = () => {
                 </div>
                 <button
                     type="submit"
-                    style={{ backgroundColor: "#4CAF50", color: "white", padding: "12px 20px", border: "none", borderRadius: "5px", cursor: "pointer" }}
+                    style={{ backgroundColor: "deepskyblue", color: "white", padding: "12px 20px", border: "none", borderRadius: "10px", cursor: "pointer" }}
                 >
                     Submit
                 </button>
