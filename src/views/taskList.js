@@ -45,33 +45,38 @@ const TaskList = () => {
     };
 
     return (
-        <div>
+        <div style={{
+            backgroundColor: "#f1f1f1",
+            borderRadius: "10px",
+            padding: "20px",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start"
+        }}>
             <h1>Task List</h1>
-            <ul>
+            <ul style={{ margin: 0, padding: 0 }}>
                 {tasks.map((task) => (
-                    <li key={task.id}>
-                        <h2>{task.task_name}</h2>
-                        <p>{task.description}</p>
-                        <p>{task.due_date}</p>
-                        <p>{task.status}</p>
-                        <button onClick={() => handleDelete(task.id)}>Delete</button>
-                        <button
-                            onClick={() => {
+                    <li key={task.id} style={{ display: "flex", flexDirection: "column", width: "100%", marginBottom: "10px" }}>
+                        <div style={{ flexGrow: 1 }}>
+                            <h2>{task.task_name}</h2>
+                            <p>{task.description}</p>
+                            <p>{task.due_date}</p>
+                            <p>{task.status}</p>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                            <button onClick={() => handleDelete(task.id)}>Delete</button>
+                            <button onClick={() => {
                                 const newDescription = prompt("Enter a new description:");
                                 const newDueDate = prompt("Enter a new due date (YYYY-MM-DD):");
-                                handleEdit(task.id, {
-                                    description: newDescription,
-                                    due_date: newDueDate,
-                                });
-                            }}
-                        >
-                            Edit
-                        </button>
-
+                                handleEdit(task.id, { description: newDescription, due_date: newDueDate });
+                            }}>Edit</button>
+                        </div>
                     </li>
                 ))}
             </ul>
         </div>
+
     );
 };
 
