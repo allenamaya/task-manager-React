@@ -25,18 +25,18 @@ const TaskList = () => {
         }
     };
 
-    const handleEdit = async (id, updates) => {
+    const handleEdit = async (id, status) => {
         const response = await fetch(`http://127.0.0.1:9292/tasks/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updates),
+            body: JSON.stringify({ status }),
         });
         if (response.ok) {
             setTasks(
                 tasks.map((task) =>
-                    task.id === id ? { ...task, ...updates } : task
+                    task.id === id ? { ...task, status } : task
                 )
             );
             console.log("Task updated successfully");
@@ -44,6 +44,7 @@ const TaskList = () => {
             console.log("Task update failed");
         }
     };
+
 
     return (
         <>
@@ -75,9 +76,8 @@ const TaskList = () => {
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <button onClick={() => handleDelete(task.id)}>Delete</button>
                             <button onClick={() => {
-                                const newDescription = prompt("Enter a new description:");
-                                const newDueDate = prompt("Enter a new due date (YYYY-MM-DD):");
-                                handleEdit(task.id, { description: newDescription, due_date: newDueDate });
+                                const newStatus = prompt("Enter a new status:");
+                                handleEdit(task.id, newStatus);
                             }}>Edit</button>
                         </div>
                     </div>
