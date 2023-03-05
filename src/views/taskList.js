@@ -5,7 +5,7 @@ const TaskList = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("http://your-api-endpoint.com/tasks");
+            const response = await fetch("http://127.0.0.1:9292/tasks");
             const data = await response.json();
             setTasks(data);
         };
@@ -13,7 +13,7 @@ const TaskList = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        const response = await fetch(`http://your-api-endpoint.com/tasks/${id}`, {
+        const response = await fetch(`http://127.0.0.1:9292/tasks/${id}`, {
             method: "DELETE",
         });
         if (response.ok) {
@@ -25,7 +25,7 @@ const TaskList = () => {
     };
 
     const handleEdit = async (id, updates) => {
-        const response = await fetch(`http://your-api-endpoint.com/tasks/${id}`, {
+        const response = await fetch(`http://127.0.0.1:9292/tasks/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -56,15 +56,18 @@ const TaskList = () => {
                         <p>{task.status}</p>
                         <button onClick={() => handleDelete(task.id)}>Delete</button>
                         <button
-                            onClick={() =>
+                            onClick={() => {
+                                const newDescription = prompt("Enter a new description:");
+                                const newDueDate = prompt("Enter a new due date (YYYY-MM-DD):");
                                 handleEdit(task.id, {
-                                    description: "New description",
-                                    due_date: "2023-04-05",
-                                })
-                            }
+                                    description: newDescription,
+                                    due_date: newDueDate,
+                                });
+                            }}
                         >
                             Edit
                         </button>
+
                     </li>
                 ))}
             </ul>

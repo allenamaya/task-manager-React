@@ -25,7 +25,7 @@ const AddTask = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const task = { task_name, description, due_date, status };
-        const response = await fetch("http://your-api-endpoint.com/tasks", {
+        const response = await fetch("http://127.0.0.1:9292/tasks", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
