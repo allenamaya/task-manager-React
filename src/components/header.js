@@ -27,7 +27,7 @@ const Header = ({ isLoggedIn, onLogout }) => {
             padding: '10px',
             width: '100%'
         }}>
-            <h1 style={{ margin: 0, color: "white" }}>Task Manager</h1>
+            <h1 style={{ margin: 0, color: "deepskyblue" }}>Task Manager</h1>
             {isLoggedIn && (
                 <button style={{
                     backgroundColor: '#2ECC71',
