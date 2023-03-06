@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/header";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,6 +29,8 @@ const Login = () => {
     };
 
     return (
+        <>
+        <Header/>
         <div>
             <h1>Welcome to your task manager</h1>
             <h2>Lets get you Logged in</h2>
@@ -59,6 +62,7 @@ const Login = () => {
             </form>
             {error && <div>{error}</div>}
         </div>
+        </>
     );
 };
 
