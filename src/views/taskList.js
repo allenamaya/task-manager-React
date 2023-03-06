@@ -62,17 +62,17 @@ const TaskList = () => {
             }}>
                 {tasks.map((task) => (
                     <div key={task.id} style={{
-                        backgroundColor: "#fff",
+                        backgroundColor: "black",
                         borderRadius: "10px",
                         padding: "15px",
                         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
                         width: "calc(30% - 15px)",
                         marginBottom: "20px"
                     }}>
-                        <h2>{task.task_name}</h2>
-                        <p>{task.description}</p>
-                        <p>{task.due_date}</p>
-                        <p>{task.status}</p>
+                        <h2 style={{color: "white"}}>{task.task_name}</h2>
+                        <p style={{color: "white"}}>{task.description}</p>
+                        <p style={{color: "white"}}>{task.due_date}</p>
+                        <p style={{color: "white"}}>{task.status}</p>
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <button style={{ backgroundColor: "deepskyblue", color: "white", padding: "10px", borderRadius: "10px", marginRight: "10px" }} onClick={() => handleDelete(task.id)}>Delete</button>
                             <button style={{ backgroundColor: "deepskyblue", color: "white", padding: "10px", borderRadius: "10px" }} onClick={() => {
