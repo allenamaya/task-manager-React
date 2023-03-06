@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -17,6 +19,7 @@ const Login = () => {
         if (response.ok) {
             // handle successful login
             console.log("Login successful");
+            navigate("/home");
         } else {
             // handle failed login
             console.log("Login failed");
